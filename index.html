@@ -16,12 +16,12 @@
             height: 100vh;
             overflow: hidden;
             font-family: 'Inter', Arial, sans-serif;
-            background: linear-gradient(180deg, #718096 0%, #a1b2c3 50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
+            background: linear-gradient(180deg, #718096 0%, #a1b2c3 30%);
             color: #f7fafc;
+        }
+        body {
+            display: block;
+            padding: 5px;
         }
         .container {
             background: linear-gradient(135deg, #1e293b 0%, #2d3748 100%);
@@ -34,6 +34,8 @@
             position: relative;
             overflow: hidden;
             color: #f7fafc;
+            min-height: 90vh; /* Makes container longer to fill most of the viewport */
+            margin: 0 auto; /* Centers horizontally */
         }
         .container::before {
             content: '';
@@ -124,6 +126,9 @@
             margin-top: 20px;
             font-size: 0.9rem;
             color: #a0aec0;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
         }
         .footer a {
             color: #63b3ed;
@@ -135,6 +140,7 @@
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
+                min-height: 90vh; /* Maintains longer container on mobile */
             }
             .profile-img {
                 width: 150px;
@@ -161,6 +167,7 @@
             .footer {
                 margin-top: 15px;
                 font-size: 0.85rem;
+                bottom: 15px;
             }
         }
     </style>
