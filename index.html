@@ -12,19 +12,20 @@
             padding: 0;
             box-sizing: border-box;
         }
-        body {
+        html, body {
+            height: 100vh;
+            overflow: hidden;
             font-family: 'Inter', Arial, sans-serif;
-            background: linear-gradient(180deg, #718096 0%, #a1b2c3 60%);
-            min-height: 100vh;
+            background: linear-gradient(180deg, #718096 0%, #a1b2c3 50%);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
             color: #f7fafc;
         }
         .container {
             background: linear-gradient(135deg, #1e293b 0%, #2d3748 100%);
-            padding: 40px;
+            padding: 20px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             max-width: 600px;
@@ -48,7 +49,7 @@
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 4px solid transparent;
             background: linear-gradient(45deg, #2b6cb0, #9f7aea) border-box;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -56,22 +57,22 @@
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #f7fafc;
         }
         .bio {
             font-size: 1.1rem;
             font-weight: 400;
             color: #cbd5e0;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             line-height: 1.5;
         }
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 15px auto;
-            padding: 15px;
+            margin: 10px auto;
+            padding: 12px;
             width: 80%;
             max-width: 400px;
             text-decoration: none;
@@ -120,7 +121,7 @@
             background: #00669c;
         }
         .footer {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 0.9rem;
             color: #a0aec0;
         }
@@ -133,25 +134,33 @@
         }
         @media (max-width: 600px) {
             .container {
-                padding: 20px;
+                padding: 15px;
             }
             .profile-img {
                 width: 150px;
                 height: 150px;
+                margin-bottom: 10px;
             }
             h1 {
                 font-size: 2rem;
+                margin-bottom: 6px;
             }
             .bio {
                 font-size: 1rem;
+                margin-bottom: 15px;
             }
             .social-links a {
                 font-size: 1rem;
-                padding: 12px;
+                padding: 10px;
+                margin: 8px auto;
                 width: 90%;
             }
             .social-links a i {
                 font-size: 1.3rem;
+            }
+            .footer {
+                margin-top: 15px;
+                font-size: 0.85rem;
             }
         }
     </style>
