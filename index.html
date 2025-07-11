@@ -13,8 +13,8 @@
             box-sizing: border-box;
         }
         html, body {
-            height: 100vh;
-            overflow: hidden;
+            height: auto; /* Removed fixed height to allow scrolling */
+            overflow: auto; /* Enabled scrolling */
             font-family: 'Inter', Arial, sans-serif;
             background: linear-gradient(180deg, #718096 0%, #a1b2c3 100%);
             color: #f7fafc;
@@ -22,6 +22,7 @@
         body {
             display: block;
             padding: 10px;
+            min-height: 100vh; /* Ensures body takes full viewport height as a minimum */
         }
         .container {
             background: linear-gradient(135deg, #1e293b 0%, #2d3748 100%);
@@ -32,10 +33,12 @@
             width: 100%;
             text-align: center;
             position: relative;
-            overflow: hidden;
             color: #f7fafc;
-            min-height: 88vh; /* Reduced to create space at the end */
+            min-height: 0; /* Removed fixed min-height to allow content to dictate height */
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 50px; /* Added padding to ensure space at the end */
         }
         .container::before {
             content: '';
@@ -126,7 +129,7 @@
             margin-top: 30px;
             font-size: 1rem;
             color: #a0aec0;
-            width: 100%; /* Removed position: absolute to allow natural flow */
+            width: 100%;
         }
         .footer a {
             color: #63b3ed;
@@ -138,7 +141,8 @@
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
-                min-height: 85vh; /* Reduced to create space at the end */
+                min-height: 90vh; /* Kept min-height for mobile no-scroll preference */
+                padding-bottom: 40px;
             }
             .profile-img {
                 width: 150px;
@@ -173,15 +177,17 @@
 </head>
 <body>
     <div class="container">
-        <img src="moosasiraj.jpeg" alt="Moosa Siraj Profile Picture" class="profile-img">
-        <h1>Moosa Siraj</h1>
-        <p class="bio">Lawyer | Former Member of Parliament & Minority Leader of Parliament | Maldives 🇲🇻</p>
-        <div class="social-links">
-            <a href="https://x.com/MoosesSiraj" target="_blank" class="x"><i class="fab fa-x-twitter"></i> X</a>
-            <a href="https://www.facebook.com/MoosesSiraj/" target="_blank" class="facebook"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://www.instagram.com/moosasiraj/" target="_blank" class="instagram"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://www.tiktok.com/@moosasiraj" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a href="https://www.linkedin.com/in/moosasiraj/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <div>
+            <img src="moosasiraj.jpeg" alt="Moosa Siraj Profile Picture" class="profile-img">
+            <h1>Moosa Siraj</h1>
+            <p class="bio">Lawyer | Former Member of Parliament & Minority Leader of Parliament | Maldives 🇲🇻</p>
+            <div class="social-links">
+                <a href="https://x.com/MoosesSiraj" target="_blank" class="x"><i class="fab fa-x-twitter"></i> X</a>
+                <a href="https://www.facebook.com/MoosesSiraj/" target="_blank" class="facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://www.instagram.com/moosasiraj/" target="_blank" class="instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@moosasiraj" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://www.linkedin.com/in/moosasiraj/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
         </div>
         <div class="footer">
             © 2025 Moosa Siraj | <a href="mailto:moosessiraj@gmail.com">Contact Me</a>
