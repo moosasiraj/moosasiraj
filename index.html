@@ -13,8 +13,7 @@
             box-sizing: border-box;
         }
         html, body {
-            height: 100vh;
-            overflow: hidden;
+            height: 100%;
             font-family: 'Inter', Arial, sans-serif;
             background: linear-gradient(180deg, #718096 0%, #a1b2c3 50%);
             color: #f7fafc;
@@ -24,7 +23,7 @@
             padding: 10px;
         }
         .container {
-            background: linear-gradient(135deg, #1e293b 0%, #2d3748 50%);
+            background: linear-gradient(135deg, #1e293b 0%, #2d3748 1"50%);
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -34,7 +33,7 @@
             position: relative;
             overflow: hidden;
             color: #f7fafc;
-            min-height: 90vh;
+            min-height: 100vh;
             margin: 0 auto;
         }
         .container::before {
@@ -126,8 +125,7 @@
             margin-top: 30px;
             font-size: 1rem;
             color: #a0aec0;
-            position: absolute;
-            bottom: 30px;
+            position: static; /* Changed from absolute to allow natural flow with scroll */
             width: 100%;
         }
         .footer a {
@@ -140,7 +138,7 @@
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
-                min-height: 90vh;
+                min-height: 100vh;
             }
             .profile-img {
                 width: 150px;
@@ -169,7 +167,6 @@
             .footer {
                 margin-top: 25px;
                 font-size: 0.9rem;
-                bottom: 20px;
             }
         }
     </style>
