@@ -16,16 +16,16 @@
             height: 100vh;
             overflow: hidden;
             font-family: 'Inter', Arial, sans-serif;
-            background: linear-gradient(180deg, #718096 0%, #a1b2c3 30%);
+            background: linear-gradient(180deg, #718096 0%, #a1b2c3 50%);
             color: #f7fafc;
         }
         body {
             display: block;
-            padding: 5px;
+            padding: 10px;
         }
         .container {
             background: linear-gradient(135deg, #1e293b 0%, #2d3748 50%);
-            padding: 20px;
+            padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             max-width: 600px;
@@ -34,8 +34,8 @@
             position: relative;
             overflow: hidden;
             color: #f7fafc;
-            min-height: 90vh; /* Makes container longer to fill most of the viewport */
-            margin: 0 auto; /* Centers horizontally */
+            min-height: 90vh;
+            margin: 0 auto;
         }
         .container::before {
             content: '';
@@ -51,7 +51,7 @@
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             border: 4px solid transparent;
             background: linear-gradient(45deg, #2b6cb0, #9f7aea) border-box;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -59,34 +59,34 @@
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             color: #f7fafc;
         }
         .bio {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 400;
             color: #cbd5e0;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 10px auto;
-            padding: 12px;
-            width: 80%;
-            max-width: 400px;
+            margin: 15px auto;
+            padding: 15px;
+            width: 85%;
+            max-width: 450px;
             text-decoration: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
+            border-radius: 15px;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #ffffff;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .social-links a i {
-            margin-right: 12px;
-            font-size: 1.5rem;
+            margin-right: 15px;
+            font-size: 1.7rem;
         }
         .social-links a:hover {
             transform: translateY(-3px);
@@ -123,11 +123,11 @@
             background: #00669c;
         }
         .footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
+            margin-top: 30px;
+            font-size: 1rem;
             color: #a0aec0;
             position: absolute;
-            bottom: 20px;
+            bottom: 30px;
             width: 100%;
         }
         .footer a {
@@ -139,35 +139,37 @@
         }
         @media (max-width: 600px) {
             .container {
-                padding: 15px;
-                min-height: 90vh; /* Maintains longer container on mobile */
+                padding: 20px;
+                min-height: 90vh;
             }
             .profile-img {
                 width: 150px;
                 height: 150px;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
             }
             h1 {
                 font-size: 2rem;
-                margin-bottom: 6px;
+                margin-bottom: 12px;
             }
             .bio {
-                font-size: 1rem;
-                margin-bottom: 15px;
+                font-size: 1.1rem;
+                margin-bottom: 25px;
             }
             .social-links a {
-                font-size: 1rem;
-                padding: 10px;
-                margin: 8px auto;
+                font-size: 1.1rem;
+                padding: 12px;
+                margin: 12px auto;
                 width: 90%;
+                max-width: 400px;
             }
             .social-links a i {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
+                margin-right: 12px;
             }
             .footer {
-                margin-top: 15px;
-                font-size: 0.85rem;
-                bottom: 15px;
+                margin-top: 25px;
+                font-size: 0.9rem;
+                bottom: 20px;
             }
         }
     </style>
