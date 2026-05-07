@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan Your Journey — Maldives Local</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ocean: #0077b6; --ocean-dark: #005f8e; --teal: #00b4d8; --text: #1a202c; --muted: #718096; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: #f7fbff; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e2eaf3; padding: 0 24px; height: 60px;
+      display: flex; align-items: center; gap: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .back-btn { display: flex; align-items: center; gap: 6px; color: var(--ocean); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+    .back-btn:hover { text-decoration: underline; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--ocean); font-weight: 700; margin-left: auto; }
+
+    .hero {
+      background: linear-gradient(135deg, var(--ocean), var(--teal));
+      color: #fff; text-align: center; padding: 48px 20px 40px;
+    }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 10px; }
+    .hero p { font-size: 1rem; opacity: 0.88; max-width: 520px; margin: 0 auto; }
+
+    .content { max-width: 760px; margin: 0 auto; padding: 40px 20px 60px; }
+
+    /* Airport selector */
+    .origin-selector {
+      background: #fff; border-radius: 16px; padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #e2eaf3;
+      margin-bottom: 32px;
+    }
+    .origin-selector h2 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: #4a5568; }
+    .origin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+    .origin-chip {
+      padding: 10px 14px; border: 1.5px solid #dce6ef; border-radius: 10px;
+      cursor: pointer; font-size: 0.85rem; font-weight: 500; text-align: center;
+      transition: all 0.15s; background: #f7fbff;
+    }
+    .origin-chip:hover { border-color: var(--ocean); color: var(--ocean); }
+    .origin-chip.active { background: var(--ocean); color: #fff; border-color: var(--ocean); }
+    .origin-chip .flag { font-size: 1.1rem; display: block; margin-bottom: 2px; }
+
+    /* Journey timeline */
+    .journey-timeline { position: relative; }
+    .timeline-line {
+      position: absolute; left: 22px; top: 24px; bottom: 24px; width: 2px;
+      background: linear-gradient(to bottom, var(--ocean), var(--teal));
+      z-index: 0;
+    }
+    .timeline-step {
+      display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px;
+      position: relative; z-index: 1;
+    }
+    .step-dot {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--ocean); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+      border: 3px solid #fff; box-shadow: 0 0 0 2px var(--ocean);
+    }
+    .step-dot.gray { background: #a0aec0; box-shadow: 0 0 0 2px #a0aec0; }
+    .step-card {
+      flex: 1; background: #fff; border-radius: 14px; padding: 18px;
+      border: 1px solid #e2eaf3; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .step-card .step-meta { font-size: 0.83rem; color: var(--muted); margin-bottom: 10px; }
+    .step-details { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .detail-chip {
+      background: #f0f7ff; color: var(--ocean); padding: 4px 10px;
+      border-radius: 8px; font-size: 0.78rem; font-weight: 500;
+    }
+    .detail-chip.green { background: #e8faf0; color: #276749; }
+    .step-action {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 8px; font-size: 0.83rem;
+      font-weight: 600; text-decoration: none; cursor: pointer;
+      border: none; font-family: inherit; transition: opacity 0.2s;
+    }
+    .step-action.primary { background: var(--ocean); color: #fff; }
+    .step-action.primary:hover { opacity: 0.85; }
+    .step-action.outline { border: 1.5px solid var(--ocean); color: var(--ocean); background: transparent; }
+    .step-action.outline:hover { background: #f0f7ff; }
+
+    /* Cost summary */
+    .cost-summary {
+      background: linear-gradient(135deg, #e8f4ff, #f0f9ff);
+      border: 1px solid #c8dff5; border-radius: 16px; padding: 24px;
+      margin-top: 32px;
+    }
+    .cost-summary h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .cost-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #dce6ef; font-size: 0.88rem; }
+    .cost-row:last-of-type { border-bottom: none; }
+    .cost-row .label { color: #4a5568; }
+    .cost-row .value { font-weight: 600; }
+    .cost-total { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: 8px; border-top: 2px solid var(--ocean); }
+    .cost-total .label { font-weight: 700; font-size: 1rem; }
+    .cost-total .value { font-size: 1.3rem; font-weight: 700; color: var(--ocean); }
+
+    .tips-box {
+      background: #fff; border-radius: 16px; padding: 24px;
+      border: 1px solid #e2eaf3; margin-top: 24px;
+    }
+    .tips-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+    .tip-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 0.88rem; line-height: 1.5; }
+    .tip-item:last-child { margin-bottom: 0; }
+    .tip-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+    @media (max-width: 540px) {
+      .hero h1 { font-size: 1.6rem; }
+      .origin-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="back-btn" id="backLink" href="index.html">← Back to map</a>
+  <span class="nav-logo">🌊 Maldives Local</span>
+</nav>
+
+<div class="hero">
+  <h1 id="heroTitle">Journey Planner</h1>
+  <p id="heroDesc">Step-by-step guide to reach your island from any international airport.</p>
+</div>
+
+<div class="content">
+  <div class="origin-selector">
+    <h2>Where are you flying from?</h2>
+    <div class="origin-grid" id="originGrid"></div>
+  </div>
+
+  <div class="journey-timeline" id="timeline">
+    <div class="timeline-line"></div>
+    <!-- filled by JS -->
+  </div>
+
+  <div class="cost-summary" id="costSummary"></div>
+
+  <div class="tips-box">
+    <h3>🗺️ Travel tips</h3>
+    <div class="tip-item"><span class="tip-icon">💵</span> Carry US dollars — widely accepted throughout the Maldives. Local currency (Rufiyaa) used on local islands.</div>
+    <div class="tip-item"><span class="tip-icon">📱</span> Get a Dhiraagu or Ooredoo SIM at Velana airport — local data is cheap (~$5 for 3 GB).</div>
+    <div class="tip-item"><span class="tip-icon">🕌</span> Dress modestly when arriving at local islands — cover shoulders and knees when walking through the village.</div>
+    <div class="tip-item"><span class="tip-icon">⏰</span> Speedboats on local islands often run on Maldivian time — confirm departure times with your guesthouse the night before.</div>
+    <div class="tip-item"><span class="tip-icon">🎒</span> Pack light — luggage is limited on domestic flights (20 kg checked, 5 kg carry-on).</div>
+    <div class="tip-item"><span class="tip-icon">☀️</span> Best time to visit most atolls: November–April (dry season). May–October can bring rain but fewer tourists.</div>
+  </div>
+</div>
+
+<script>
+const ORIGINS = [
+  { id: "cmb", label: "Colombo", flag: "🇱🇰", country: "Sri Lanka", flight: "~2h 15m", price: "$150–350" },
+  { id: "del", label: "New Delhi", flag: "🇮🇳", country: "India", flight: "~3h 30m", price: "$180–400" },
+  { id: "bkk", label: "Bangkok", flag: "🇹🇭", country: "Thailand", flight: "~4h", price: "$200–450" },
+  { id: "sin", label: "Singapore", flag: "🇸🇬", country: "Singapore", flight: "~4h 30m", price: "$250–500" },
+  { id: "lhr", label: "London", flag: "🇬🇧", country: "UK", flight: "~10–12h", price: "$500–1200" },
+  { id: "syd", label: "Sydney", flag: "🇦🇺", country: "Australia", flight: "~9–11h", price: "$600–1400" },
+];
+
+const ISLAND_JOURNEYS = {
+  maamendhoo: {
+    name: "Maamendhoo", atoll: "Laamu Atoll",
+    steps: [
+      { icon: "🛬", title: "Arrive at Velana International Airport (MLE)", meta: "Malé, Maldives", details: ["Allow 1–2 hrs for immigration", "Currency exchange available", "Free WiFi in terminal"], action: null },
+      { icon: "✈️", title: "Domestic flight: Velana → Kadhoo Airport (KDO)", meta: "Maldivian Airlines or Island Aviation · ~55 min", details: ["Approx. $80–120 per person", "Flights 1–2× daily", "Book in advance (limited seats)"], actionLabel: "Search domestic flights", actionUrl: "https://maldivian.aero", actionOutline: true },
+      { icon: "⛵", title: "Speedboat: Kadhoo → Maamendhoo", meta: "Public / private speedboat · ~30 min", details: ["Approx. $10–15 per person", "Schedules vary — confirm with guesthouse", "Private boat also available ($40–60)"], actionLabel: "Contact operator", actionOutline: true },
+      { icon: "🏠", title: "Arrive at your guesthouse", meta: "Maamendhoo, Laamu Atoll", details: ["Walk or tuk-tuk from jetty", "Most guesthouses offer free pickup"], actionLabel: "Book accommodation", actionUrl: "index.html" },
+    ],
+    costs: [
+      { label: "International flight (return)", value: "varies by origin" },
+      { label: "Domestic flight (Velana → Kadhoo)", value: "$80–120" },
+      { label: "Speedboat transfer", value: "$10–15" },
+      { label: "Total journey (excl. intl flight)", value: "$90–135" },
+    ]
+  },
+  dhigurah: {
+    name: "Dhigurah", atoll: "South Ari Atoll",
+    steps: [
+      { icon: "🛬", title: "Arrive at Velana International Airport (MLE)", meta: "Malé, Maldives", details: ["Allow 1–2 hrs for immigration", "ATM and money exchange in arrivals"], action: null },
+      { icon: "⛵", title: "Speedboat: Velana → Maafushi", meta: "Public speedboat · ~90 min", details: ["Approx. $20–30 per person", "Regular daily departures from Malé", "Book through guesthouse or at harbour"], actionLabel: "Check schedules", actionOutline: true },
+      { icon: "⛵", title: "Speedboat: Maafushi → Dhigurah", meta: "Local speedboat · ~45 min", details: ["Approx. $15–25 per person", "Coordinate with your guesthouse"], actionLabel: "Contact guesthouse", actionOutline: true },
+      { icon: "🏠", title: "Arrive at your guesthouse", meta: "Dhigurah, South Ari Atoll", details: ["Short walk from jetty", "Welcome drink usually provided 🥥"], actionLabel: "Book accommodation", actionUrl: "index.html" },
+    ],
+    costs: [
+      { label: "International flight (return)", value: "varies by origin" },
+      { label: "Speedboat: Velana → Maafushi", value: "$20–30" },
+      { label: "Speedboat: Maafushi → Dhigurah", value: "$15–25" },
+      { label: "Total journey (excl. intl flight)", value: "$35–55" },
+    ]
+  },
+  ukulhas: {
+    name: "Ukulhas", atoll: "North Ari Atoll",
+    steps: [
+      { icon: "🛬", title: "Arrive at Velana International Airport (MLE)", meta: "Malé, Maldives", details: ["Allow 1–2 hrs for immigration", "Velana → Ukulhas speedboats depart from Malé harbour"], action: null },
+      { icon: "⛵", title: "Speedboat: Velana → Ukulhas", meta: "Direct public speedboat · ~2 hours", details: ["Approx. $25–35 per person", "Operated by public ferry or private speedboat", "Ferry: cheaper but less frequent · Speedboat: faster"], actionLabel: "Check schedules", actionOutline: true },
+      { icon: "🏠", title: "Arrive at your guesthouse", meta: "Ukulhas, North Ari Atoll", details: ["Walk from jetty (~5 min)", "Bicycle rentals available at the jetty"], actionLabel: "Book accommodation", actionUrl: "index.html" },
+    ],
+    costs: [
+      { label: "International flight (return)", value: "varies by origin" },
+      { label: "Speedboat: Velana → Ukulhas", value: "$25–35" },
+      { label: "Total journey (excl. intl flight)", value: "$25–35" },
+    ]
+  },
+};
+
+// ── Init ──────────────────────────────────────────────────────────────────
+const params = new URLSearchParams(location.search);
+const islandId = params.get('island') || 'maamendhoo';
+const journey = ISLAND_JOURNEYS[islandId] || ISLAND_JOURNEYS.maamendhoo;
+let selectedOrigin = ORIGINS[0];
+
+document.getElementById('heroTitle').textContent = `Journey to ${journey.name}`;
+document.getElementById('heroDesc').textContent = `From Velana International Airport to ${journey.name}, ${journey.atoll} — step by step.`;
+document.getElementById('backLink').href = `index.html`;
+
+// Origins
+document.getElementById('originGrid').innerHTML = ORIGINS.map(o => `
+  <div class="origin-chip ${o.id === selectedOrigin.id ? 'active' : ''}" onclick="setOrigin('${o.id}')">
+    <span class="flag">${o.flag}</span>${o.label}
+  </div>`).join('');
+
+function setOrigin(id) {
+  selectedOrigin = ORIGINS.find(o => o.id === id) || ORIGINS[0];
+  document.querySelectorAll('.origin-chip').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.origin-chip').forEach(el => {
+    if (el.textContent.includes(selectedOrigin.label)) el.classList.add('active');
+  });
+  renderTimeline();
+}
+
+function renderTimeline() {
+  const steps = [
+    {
+      icon: "✈️",
+      title: `International flight: ${selectedOrigin.label} → Velana (MLE)`,
+      meta: `${selectedOrigin.flag} ${selectedOrigin.country} → Maldives · ${selectedOrigin.flight}`,
+      details: [`Approx. ${selectedOrigin.price} return`, "Search on Skyscanner, Google Flights, or direct airlines", "Airlines: SriLankan, Maldivian, Emirates, Qatar, etc."],
+      actionLabel: "Search flights on Skyscanner",
+      actionUrl: "https://www.skyscanner.net",
+      primary: true,
+    },
+    ...journey.steps,
+  ];
+
+  const container = document.getElementById('timeline');
+  const line = container.querySelector('.timeline-line');
+  container.innerHTML = '';
+  container.appendChild(line);
+
+  steps.forEach((step, i) => {
+    const div = document.createElement('div');
+    div.className = 'timeline-step';
+    const actionHtml = step.actionLabel
+      ? `<a class="step-action ${step.primary ? 'primary' : 'outline'}" href="${step.actionUrl || '#'}" ${step.actionUrl ? 'target="_blank"' : ''}>${step.actionLabel}${step.primary ? ' →' : ''}</a>`
+      : '';
+    div.innerHTML = `
+      <div class="step-dot ${i === steps.length-1 ? '' : ''}">${step.icon}</div>
+      <div class="step-card">
+        <h3>${step.title}</h3>
+        <p class="step-meta">${step.meta}</p>
+        <div class="step-details">${step.details.map(d => `<span class="detail-chip">${d}</span>`).join('')}</div>
+        ${actionHtml}
+      </div>`;
+    container.appendChild(div);
+  });
+
+  // Cost summary
+  document.getElementById('costSummary').innerHTML = `
+    <h3>💰 Estimated journey cost</h3>
+    <div class="cost-row"><span class="label">International flight (${selectedOrigin.label} → Velana, return)</span><span class="value">${selectedOrigin.price}</span></div>
+    ${journey.costs.slice(1).map(c => `<div class="cost-row"><span class="label">${c.label}</span><span class="value">${c.value}</span></div>`).join('')}
+    <div class="cost-total"><span class="label">Total per person estimate</span><span class="value">See above</span></div>`;
+}
+
+renderTimeline();
+</script>
+</body>
+</html>
