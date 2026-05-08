@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Maldives Local</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#050e1c; --card:#0d1f38; --border:rgba(77,217,240,0.15); --accent:#4dd9f0; --ocean:#0077b6; --text:#e8f4ff; --muted:rgba(200,225,255,0.45); }
+    body {
+      font-family:'Inter',sans-serif; color:var(--text); min-height:100vh;
+      display:flex; align-items:center; justify-content:center; padding:20px;
+      background:var(--bg);
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(0,119,182,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 80%, rgba(77,217,240,0.1) 0%, transparent 55%);
+    }
+
+    .card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:22px; padding:38px; width:100%; max-width:410px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.5);
+      position:relative; overflow:hidden;
+    }
+    .card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,var(--ocean),var(--accent));
+    }
+
+    .logo { text-align:center; margin-bottom:28px; }
+    .logo-icon { font-size:2.2rem; display:block; margin-bottom:6px; }
+    .logo-name { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--accent); font-weight:700; display:block; }
+    .logo-sub { font-size:0.78rem; color:var(--muted); margin-top:3px; display:block; }
+
+    .tabs { display:flex; background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:12px; padding:3px; margin-bottom:26px; }
+    .tab {
+      flex:1; padding:9px; text-align:center; border-radius:9px;
+      font-size:0.85rem; font-weight:600; cursor:pointer; transition:all 0.2s;
+      color:var(--muted); border:none; background:transparent; font-family:inherit;
+    }
+    .tab.active { background:rgba(77,217,240,0.12); color:var(--accent); border:1px solid rgba(77,217,240,0.25); }
+
+    .form-row { margin-bottom:14px; }
+    .form-row label { display:block; font-size:0.7rem; font-weight:700; color:var(--muted); margin-bottom:5px; text-transform:uppercase; letter-spacing:0.06em; }
+    .form-row input {
+      width:100%; padding:11px 14px;
+      background:rgba(255,255,255,0.04); border:1px solid var(--border);
+      border-radius:10px; font-size:0.9rem; font-family:inherit;
+      outline:none; color:var(--text); transition:border-color 0.2s;
+    }
+    .form-row input::placeholder { color:rgba(200,225,255,0.25); }
+    .form-row input:focus { border-color:rgba(77,217,240,0.5); background:rgba(77,217,240,0.04); }
+
+    .btn-main {
+      width:100%; padding:13px; border:none; border-radius:12px;
+      background:linear-gradient(135deg,var(--ocean),#00b4d8,var(--accent));
+      color:var(--bg); font-size:0.92rem; font-weight:700;
+      cursor:pointer; font-family:inherit; transition:opacity 0.2s; margin-top:4px;
+    }
+    .btn-main:hover { opacity:0.87; }
+
+    .divider { display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted); font-size:0.75rem; }
+    .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    .social-btn {
+      width:100%; padding:11px; border:1px solid var(--border); border-radius:10px;
+      background:rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center;
+      gap:10px; font-size:0.85rem; font-weight:500; cursor:pointer;
+      font-family:inherit; transition:border-color 0.2s, background 0.2s; color:var(--muted);
+      text-decoration:none; margin-bottom:9px;
+    }
+    .social-btn:hover { border-color:rgba(77,217,240,0.35); color:var(--text); background:rgba(77,217,240,0.04); }
+    .social-icon { font-size:1rem; }
+
+    .terms { font-size:0.72rem; color:var(--muted); text-align:center; margin-top:18px; line-height:1.55; }
+    .terms a { color:var(--accent); text-decoration:none; }
+    .terms a:hover { text-decoration:underline; }
+
+    .back-link { display:block; text-align:center; margin-top:18px; font-size:0.82rem; color:var(--accent); text-decoration:none; font-weight:500; opacity:0.8; }
+    .back-link:hover { opacity:1; }
+
+    .hidden { display:none; }
+    .err { background:rgba(255,80,80,0.1); border:1px solid rgba(255,80,80,0.25); color:#ff6b6b; border-radius:8px; padding:10px 14px; font-size:0.8rem; margin-bottom:14px; display:none; }
+    .err.show { display:block; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">
+    <span class="logo-icon">🌊</span>
+    <span class="logo-name">Maldives Local</span>
+    <span class="logo-sub">Discover authentic island life</span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" id="tabSI" onclick="switchTab('si')">Sign in</button>
+    <button class="tab"        id="tabReg" onclick="switchTab('reg')">Register</button>
+  </div>
+
+  <div id="errMsg" class="err"></div>
+
+  <div id="siForm">
+    <div class="form-row"><label>Email</label><input type="email" id="siEmail" placeholder="you@example.com"></div>
+    <div class="form-row"><label>Password</label><input type="password" id="siPw" placeholder="Your password"></div>
+    <button class="btn-main" onclick="doSignin()">Sign in</button>
+    <div class="divider">or</div>
+    <a class="social-btn" href="#" onclick="socialClick('Google')"><span class="social-icon">🌐</span> Continue with Google</a>
+    <a class="social-btn" href="#" onclick="socialClick('Facebook')"><span class="social-icon">📘</span> Continue with Facebook</a>
+  </div>
+
+  <div id="regForm" class="hidden">
+    <div class="form-row"><label>Full name</label><input type="text" id="regName" placeholder="Your full name"></div>
+    <div class="form-row"><label>Email</label><input type="email" id="regEmail" placeholder="you@example.com"></div>
+    <div class="form-row"><label>Nationality</label><input type="text" id="regNat" placeholder="e.g. Sri Lankan"></div>
+    <div class="form-row"><label>Password</label><input type="password" id="regPw" placeholder="At least 8 characters"></div>
+    <button class="btn-main" onclick="doRegister()">Create free account</button>
+    <div class="divider">or</div>
+    <a class="social-btn" href="#" onclick="socialClick('Google')"><span class="social-icon">🌐</span> Continue with Google</a>
+  </div>
+
+  <p class="terms">By continuing you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.<br>We never sell or share your data.</p>
+  <a href="index.html" class="back-link">← Back to map</a>
+</div>
+
+<script>
+const p = new URLSearchParams(location.search);
+if (p.get('mode')==='register') switchTab('reg');
+
+function switchTab(t) {
+  document.getElementById('siForm').classList.toggle('hidden', t!=='si');
+  document.getElementById('regForm').classList.toggle('hidden', t!=='reg');
+  document.getElementById('tabSI').classList.toggle('active', t==='si');
+  document.getElementById('tabReg').classList.toggle('active', t==='reg');
+  document.getElementById('errMsg').classList.remove('show');
+}
+function showErr(msg) { const e=document.getElementById('errMsg'); e.textContent=msg; e.classList.add('show'); }
+function doSignin() {
+  const email=document.getElementById('siEmail').value.trim(), pw=document.getElementById('siPw').value;
+  if (!email||!email.includes('@')) { showErr('Please enter a valid email address.'); return; }
+  if (!pw) { showErr('Please enter your password.'); return; }
+  sessionStorage.setItem('mlUser', JSON.stringify({email,name:email.split('@')[0]}));
+  window.location.href='index.html';
+}
+function doRegister() {
+  const name=document.getElementById('regName').value.trim(), email=document.getElementById('regEmail').value.trim(), pw=document.getElementById('regPw').value;
+  if (!name) { showErr('Please enter your full name.'); return; }
+  if (!email||!email.includes('@')) { showErr('Please enter a valid email.'); return; }
+  if (pw.length<8) { showErr('Password must be at least 8 characters.'); return; }
+  sessionStorage.setItem('mlUser', JSON.stringify({email,name}));
+  window.location.href='index.html';
+}
+function socialClick(provider) { alert(`${provider} OAuth would be configured in production.`); }
+</script>
+</body>
+</html>
