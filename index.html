@@ -1,197 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moosa Siraj</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            height: auto; /* Removed fixed height to allow scrolling */
-            overflow: auto; /* Enabled scrolling */
-            font-family: 'Inter', Arial, sans-serif;
-            background: linear-gradient(180deg, #718096 0%, #a1b2c3 100%);
-            color: #f7fafc;
-        }
-        body {
-            display: block;
-            padding: 10px;
-            min-height: 100vh; /* Ensures body takes full viewport height as a minimum */
-        }
-        .container {
-            background: linear-gradient(135deg, #1e293b 0%, #2d3748 100%);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            color: #f7fafc;
-            min-height: 0; /* Removed fixed min-height to allow content to dictate height */
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 50px; /* Added padding to ensure space at the end */
-        }
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #2b6cb0, #9f7aea);
-        }
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 25px;
-            border: 4px solid transparent;
-            background: linear-gradient(45deg, #2b6cb0, #9f7aea) border-box;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #f7fafc;
-        }
-        .bio {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #cbd5e0;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 15px auto;
-            padding: 15px;
-            width: 85%;
-            max-width: 450px;
-            text-decoration: none;
-            border-radius: 15px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #ffffff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .social-links a i {
-            margin-right: 15px;
-            font-size: 1.7rem;
-        }
-        .social-links a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-        .social-links .x {
-            background: #000000;
-        }
-        .social-links .x:hover {
-            background: #333333;
-        }
-        .social-links .facebook {
-            background: #1877f2;
-        }
-        .social-links .facebook:hover {
-            background: #1565c0;
-        }
-        .social-links .instagram {
-            background: #e1306c;
-        }
-        .social-links .instagram:hover {
-            background: #c13584;
-        }
-        .social-links .tiktok {
-            background: #000000;
-        }
-        .social-links .tiktok:hover {
-            background: #333333;
-        }
-        .social-links .linkedin {
-            background: #0077b5;
-        }
-        .social-links .linkedin:hover {
-            background: #00669c;
-        }
-        .footer {
-            margin-top: 30px;
-            font-size: 1rem;
-            color: #a0aec0;
-            width: 100%;
-        }
-        .footer a {
-            color: #63b3ed;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-                min-height: 90vh; /* Kept min-height for mobile no-scroll preference */
-                padding-bottom: 40px;
-            }
-            .profile-img {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 20px;
-            }
-            h1 {
-                font-size: 2rem;
-                margin-bottom: 12px;
-            }
-            .bio {
-                font-size: 1.1rem;
-                margin-bottom: 25px;
-            }
-            .social-links a {
-                font-size: 1.1rem;
-                padding: 12px;
-                margin: 12px auto;
-                width: 90%;
-                max-width: 400px;
-            }
-            .social-links a i {
-                font-size: 1.5rem;
-                margin-right: 12px;
-            }
-            .footer {
-                margin-top: 65px;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moosa Siraj — Attorney at Law, Maldives</title>
+<meta name="description" content="Moosa Siraj — Attorney at Law and former Member of the People's Majlis, Maldives.">
+<meta property="og:title" content="Moosa Siraj">
+<meta property="og:description" content="Attorney at Law · Former Member, People's Majlis · Malé, Maldives">
+<meta property="og:image" content="https://moosasiraj.com/moosasiraj.jpeg">
+<meta property="og:type" content="profile">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='31' fill='%230b1b29' stroke='%23b58a4a' stroke-width='2'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' fill='%23f4edda' text-anchor='middle'%3EMS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+  :root{
+    --ink: #0b1b29;
+    --ink-raised: #102436;
+    --parchment: #f4edda;
+    --parchment-dim: #a89a80;
+    --brass: #b58a4a;
+    --brass-bright: #ddb87d;
+    --lagoon: #3aa89e;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ background:var(--ink); }
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(58,168,158,0.10), transparent 60%),
+      var(--ink);
+    color:var(--parchment);
+    font-family:'Inter', Arial, sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:56px 20px;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* faint archipelago watermark */
+  body::after{
+    content:'';
+    position:fixed;
+    left:0; right:0; bottom:0;
+    height:38vh;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0 160 Q60 140 120 160 T240 160 T360 150 T480 165 T600 150 T720 160 T840 145 T960 160 T1080 155 T1200 162' fill='none' stroke='%233aa89e' stroke-width='1.5' opacity='0.16'/%3E%3Cpath d='M0 180 Q60 165 120 180 T240 178 T360 172 T480 182 T600 172 T720 180 T840 168 T960 180 T1080 176 T1200 181' fill='none' stroke='%23b58a4a' stroke-width='1' opacity='0.12'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:center bottom;
+    background-size:cover;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* certificate frame */
+  .frame{
+    position:fixed;
+    inset:14px;
+    border:1px solid rgba(181,138,74,0.35);
+    pointer-events:none;
+    z-index:1;
+  }
+  .frame::before{
+    content:'';
+    position:absolute;
+    inset:6px;
+    border:1px solid rgba(181,138,74,0.16);
+  }
+
+  .page{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:440px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  /* seal / portrait */
+  .seal{
+    position:relative;
+    width:158px;
+    height:158px;
+    margin-bottom:30px;
+    opacity:0;
+    animation:rise 0.7s ease-out 0.1s forwards;
+  }
+  .seal-tick{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:var(--brass);
+    transform:translate(-50%,-50%) rotate(45deg);
+    left:50%; top:50%;
+  }
+  .seal-tick.n{ top:-11px; }
+  .seal-tick.e{ left:calc(100% + 11px); top:50%; }
+  .seal-tick.s{ top:calc(100% + 11px); }
+  .seal-tick.w{ left:-11px; top:50%; }
+
+  .portrait{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    border:1px solid var(--brass);
+    outline:5px solid var(--ink);
+    outline-offset:-1px;
+    box-shadow:0 0 0 1px rgba(181,138,74,0.3), 0 18px 40px rgba(0,0,0,0.45);
+  }
+
+  h1{
+    font-family:'Fraunces', Georgia, serif;
+    font-optical-sizing:auto;
+    font-weight:500;
+    font-size:2.9rem;
+    letter-spacing:0.2px;
+    line-height:1.1;
+    margin:0 0 14px;
+    color:var(--parchment);
+    opacity:0;
+    animation:rise 0.7s ease-out 0.25s forwards;
+  }
+
+  .subtitle{
+    font-size:1.02rem;
+    color:var(--parchment-dim);
+    line-height:1.6;
+    opacity:0;
+    animation:rise 0.7s ease-out 0.35s forwards;
+  }
+  .subtitle .dot{ color:var(--brass); margin:0 2px; }
+
+  .ornament{
+    font-family:'Fraunces', Georgia, serif;
+    color:var(--brass);
+    font-size:1rem;
+    margin:26px 0;
+    opacity:0;
+    animation:rise 0.6s ease-out 0.45s forwards;
+  }
+  .ornament::before, .ornament::after{
+    content:'';
+    display:inline-block;
+    width:64px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(181,138,74,0.55));
+    vertical-align:middle;
+    margin:0 14px;
+  }
+  .ornament::after{ transform:scaleX(-1); }
+
+  .directory{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid rgba(181,138,74,0.28);
+  }
+
+  .row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 6px;
+    text-decoration:none;
+    color:var(--parchment);
+    border-bottom:1px solid rgba(181,138,74,0.28);
+    position:relative;
+    transition:padding-left 0.25s ease, background 0.25s ease;
+    opacity:0;
+    animation:rise 0.6s ease-out forwards;
+  }
+  .row:nth-child(1){ animation-delay:0.52s; }
+  .row:nth-child(2){ animation-delay:0.58s; }
+  .row:nth-child(3){ animation-delay:0.64s; }
+  .row:nth-child(4){ animation-delay:0.70s; }
+  .row:nth-child(5){ animation-delay:0.76s; }
+
+  .row-icon{
+    width:20px;
+    font-size:1.05rem;
+    color:var(--brass);
+    text-align:center;
+    flex-shrink:0;
+    transition:color 0.25s ease;
+  }
+  .row-label{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:500;
+    font-size:1.12rem;
+    flex-shrink:0;
+  }
+  .row-handle{
+    font-size:0.86rem;
+    color:var(--parchment-dim);
+    flex:1;
+    text-align:left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .row-arrow{
+    font-size:1rem;
+    color:var(--brass);
+    transform:translateX(-4px);
+    opacity:0;
+    transition:transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .row:hover, .row:focus-visible{
+    background:rgba(181,138,74,0.07);
+    padding-left:14px;
+  }
+  .row:hover .row-icon, .row:focus-visible .row-icon{ color:var(--lagoon); }
+  .row:hover .row-arrow, .row:focus-visible .row-arrow{ transform:translateX(0); opacity:1; }
+  .row:focus-visible{ outline:1px solid var(--brass-bright); outline-offset:-1px; }
+
+  .footer{
+    margin-top:34px;
+    font-size:0.85rem;
+    color:var(--parchment-dim);
+    letter-spacing:0.3px;
+    opacity:0;
+    animation:rise 0.6s ease-out 0.85s forwards;
+  }
+  .footer a{
+    color:var(--brass-bright);
+    text-decoration:none;
+    border-bottom:1px solid rgba(221,184,125,0.4);
+    padding-bottom:1px;
+  }
+  .footer a:hover, .footer a:focus-visible{ color:var(--lagoon); border-color:var(--lagoon); }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  @media (max-width:480px){
+    body{ padding:40px 18px; }
+    .frame{ inset:8px; }
+    .frame::before{ inset:5px; }
+    h1{ font-size:2.35rem; }
+    .seal{ width:132px; height:132px; margin-bottom:24px; }
+    .seal-tick.n{ top:-9px; }
+    .seal-tick.e{ left:calc(100% + 9px); }
+    .seal-tick.s{ top:calc(100% + 9px); }
+    .seal-tick.w{ left:-9px; }
+    .ornament{ margin:22px 0; }
+    .ornament::before, .ornament::after{ width:40px; margin:0 10px; }
+    .row-handle{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .seal, h1, .subtitle, .ornament, .row, .footer{
+      animation:none !important;
+      opacity:1 !important;
+      transform:none !important;
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div>
-            <img src="moosasiraj.jpeg" alt="Moosa Siraj Profile Picture" class="profile-img">
-            <h1>Moosa Siraj</h1>
-            <p class="bio">Lawyer | Former Member of Parliament | Maldives 🇲🇻</p>
-            <div class="social-links">
-                <a href="https://x.com/MoosesSiraj" target="_blank" class="x"><i class="fab fa-x-twitter"></i> X</a>
-                <a href="https://www.facebook.com/MoosesSiraj/" target="_blank" class="facebook"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="https://www.instagram.com/moosasiraj/" target="_blank" class="instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.tiktok.com/@moosasiraj" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
-                <a href="https://www.linkedin.com/in/moosasiraj/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            </div>
-        </div>
-        <div class="footer">
-            © 2026 Moosa Siraj | <a href="mailto:moosessiraj@gmail.com">Contact Me</a>
-        </div>
+  <div class="frame" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="seal">
+      <span class="seal-tick n" aria-hidden="true"></span>
+      <span class="seal-tick e" aria-hidden="true"></span>
+      <span class="seal-tick s" aria-hidden="true"></span>
+      <span class="seal-tick w" aria-hidden="true"></span>
+      <img src="moosasiraj.jpeg" alt="Portrait of Moosa Siraj" class="portrait">
     </div>
+
+    <h1>Moosa Siraj</h1>
+    <p class="subtitle">Attorney at Law <span class="dot">·</span> Former Member, People&rsquo;s Majlis <span class="dot">·</span> Malé, Maldives</p>
+
+    <div class="ornament" aria-hidden="true">❖</div>
+
+    <nav class="directory" aria-label="Social links">
+      <a class="row" href="https://x.com/MoosesSiraj" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-x-twitter"></i></span>
+        <span class="row-label">X</span>
+        <span class="row-handle">@MoosesSiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+      <a class="row" href="https://www.facebook.com/MoosesSiraj/" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-facebook-f"></i></span>
+        <span class="row-label">Facebook</span>
+        <span class="row-handle">MoosesSiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+      <a class="row" href="https://www.instagram.com/moosasiraj/" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-instagram"></i></span>
+        <span class="row-label">Instagram</span>
+        <span class="row-handle">@moosasiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+      <a class="row" href="https://www.tiktok.com/@moosasiraj" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-tiktok"></i></span>
+        <span class="row-label">TikTok</span>
+        <span class="row-handle">@moosasiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+      <a class="row" href="https://www.linkedin.com/in/moosasiraj/" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-linkedin-in"></i></span>
+        <span class="row-label">LinkedIn</span>
+        <span class="row-handle">in/moosasiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+    </nav>
+
+    <p class="footer">© 2026 Moosa Siraj · <a href="mailto:moosessiraj@gmail.com">Contact</a></p>
+  </main>
 </body>
 </html>
