@@ -10,58 +10,59 @@
 <meta property="og:image" content="https://moosasiraj.com/moosasiraj.jpeg">
 <meta property="og:type" content="profile">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='31' fill='%230b1b29' stroke='%23b58a4a' stroke-width='2'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' fill='%23f4edda' text-anchor='middle'%3EMS%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='31' fill='%23f6f0e1' stroke='%237d5a28' stroke-width='2'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' fill='%231c2b3a' text-anchor='middle'%3EMS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
   :root{
-    --ink: #0b1b29;
-    --parchment: #f4edda;
-    --parchment-dim: #a89a80;
+    --paper: #f6f0e1;
+    --ink: #1c2b3a;
+    --ink-dim: #6b5d4a;
     --brass: #b58a4a;
-    --brass-bright: #ddb87d;
-    --lagoon: #3aa89e;
+    --brass-deep: #7d5a28;
+    --lagoon: #146b60;
   }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
 
-  html{ background:var(--ink); }
+  html{ background:var(--paper); }
 
   body{
     min-height:100vh;
     background:
-      radial-gradient(ellipse 1300px 900px at 50% 42%, transparent 48%, rgba(0,0,0,0.34) 100%),
-      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(58,168,158,0.10), transparent 60%),
-      var(--ink);
-    color:var(--parchment);
+      radial-gradient(ellipse 1300px 900px at 50% 40%, transparent 55%, rgba(90,68,32,0.07) 100%),
+      var(--paper);
+    color:var(--ink);
     font-family:'Inter', Arial, sans-serif;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:64px 24px;
+    padding:56px 20px;
     position:relative;
     overflow-x:hidden;
   }
 
+  /* fine paper grain */
   body::before{
     content:'';
     position:fixed;
     inset:0;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity:0.05;
-    mix-blend-mode:overlay;
+    opacity:0.035;
+    mix-blend-mode:multiply;
     pointer-events:none;
     z-index:0;
   }
 
+  /* faint archipelago watermark */
   body::after{
     content:'';
     position:fixed;
     left:0; right:0; bottom:0;
     height:38vh;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0 160 Q60 140 120 160 T240 160 T360 150 T480 165 T600 150 T720 160 T840 145 T960 160 T1080 155 T1200 162' fill='none' stroke='%233aa89e' stroke-width='1.5' opacity='0.16'/%3E%3Cpath d='M0 180 Q60 165 120 180 T240 178 T360 172 T480 182 T600 172 T720 180 T840 168 T960 180 T1080 176 T1200 181' fill='none' stroke='%23b58a4a' stroke-width='1' opacity='0.12'/%3E%3C/svg%3E");
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0 160 Q60 140 120 160 T240 160 T360 150 T480 165 T600 150 T720 160 T840 145 T960 160 T1080 155 T1200 162' fill='none' stroke='%23146b60' stroke-width='1.5' opacity='0.13'/%3E%3Cpath d='M0 180 Q60 165 120 180 T240 178 T360 172 T480 182 T600 172 T720 180 T840 168 T960 180 T1080 176 T1200 181' fill='none' stroke='%237d5a28' stroke-width='1' opacity='0.10'/%3E%3C/svg%3E");
     background-repeat:no-repeat;
     background-position:center bottom;
     background-size:cover;
@@ -69,158 +70,195 @@
     z-index:0;
   }
 
+  /* certificate frame: registration corner marks, no continuous rule */
+  .frame{
+    position:fixed;
+    inset:14px;
+    pointer-events:none;
+    z-index:1;
+  }
+  .corner{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-color:rgba(125,90,40,0.5);
+    border-style:solid;
+    border-width:0;
+  }
+  .corner.tl{ top:0; left:0; border-top-width:1px; border-left-width:1px; }
+  .corner.tr{ top:0; right:0; border-top-width:1px; border-right-width:1px; }
+  .corner.bl{ bottom:0; left:0; border-bottom-width:1px; border-left-width:1px; }
+  .corner.br{ bottom:0; right:0; border-bottom-width:1px; border-right-width:1px; }
+
   .page{
     position:relative;
     z-index:2;
     width:100%;
-    max-width:480px;
-  }
-
-  .header{
+    max-width:440px;
     display:flex;
-    align-items:flex-start;
-    gap:26px;
-    margin-bottom:30px;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
   }
 
-  .portrait-frame{
+  /* seal / portrait medallion */
+  .seal{
     position:relative;
-    width:118px;
-    height:148px;
-    flex-shrink:0;
-    border:1px solid var(--brass);
-    padding:5px;
-    box-shadow:0 16px 32px rgba(0,0,0,0.4);
+    width:158px;
+    height:158px;
+    margin-bottom:34px;
     opacity:0;
     animation:rise 0.7s ease-out 0.1s forwards;
   }
-  .portrait-frame::after{
+  .seal::before{
     content:'';
     position:absolute;
-    right:-7px;
-    bottom:-7px;
-    width:16px;
-    height:16px;
-    border-bottom:1px solid var(--brass-bright);
-    border-right:1px solid var(--brass-bright);
+    inset:-11px;
+    border-radius:50%;
+    border:1px solid rgba(125,90,40,0.55);
   }
+  .seal::after{
+    content:'';
+    position:absolute;
+    inset:-18px;
+    border-radius:50%;
+    border:1px solid rgba(125,90,40,0.22);
+  }
+
   .portrait{
     width:100%;
     height:100%;
+    border-radius:50%;
     object-fit:cover;
     display:block;
-  }
-
-  .identity{
-    padding-top:6px;
+    border:1px solid var(--brass-deep);
+    outline:5px solid var(--paper);
+    outline-offset:-1px;
+    box-shadow:0 0 0 1px rgba(125,90,40,0.3), 0 18px 34px rgba(28,43,58,0.16);
   }
 
   h1{
     font-family:'Fraunces', Georgia, serif;
     font-optical-sizing:auto;
     font-weight:500;
-    font-size:2.6rem;
+    font-size:2.9rem;
     letter-spacing:0.2px;
-    line-height:1.08;
-    margin:0 0 12px;
-    color:var(--parchment);
-    text-shadow:0 1px 1px rgba(0,0,0,0.5);
+    line-height:1.1;
+    margin:0 0 14px;
+    color:var(--ink);
+    text-shadow:0 1px 0 rgba(255,255,255,0.7);
     opacity:0;
-    animation:rise 0.7s ease-out 0.22s forwards;
+    animation:rise 0.7s ease-out 0.25s forwards;
   }
 
   .subtitle{
-    font-size:0.98rem;
-    color:var(--parchment-dim);
+    font-size:1.02rem;
+    color:var(--ink-dim);
     line-height:1.6;
-    max-width:280px;
     opacity:0;
-    animation:rise 0.7s ease-out 0.34s forwards;
+    animation:rise 0.7s ease-out 0.35s forwards;
   }
-  .subtitle .dot{ color:var(--brass); margin:0 2px; }
+  .subtitle .dot{ color:var(--brass-deep); margin:0 2px; }
 
-  .rule{
-    width:100%;
+  .ornament{
+    font-family:'Fraunces', Georgia, serif;
+    color:var(--brass-deep);
+    font-size:1rem;
+    margin:26px 0;
+    opacity:0;
+    animation:rise 0.6s ease-out 0.45s forwards;
+  }
+  .ornament::before, .ornament::after{
+    content:'';
+    display:inline-block;
+    width:64px;
     height:1px;
-    background:linear-gradient(90deg, rgba(181,138,74,0.55), rgba(181,138,74,0.06));
-    margin-bottom:26px;
-    transform-origin:left center;
-    opacity:0;
-    animation:rise 0.6s ease-out 0.44s forwards;
+    background:linear-gradient(90deg, transparent, rgba(125,90,40,0.45));
+    vertical-align:middle;
+    margin:0 14px;
   }
+  .ornament::after{ transform:scaleX(-1); }
 
-  .connect{
-    margin-bottom:30px;
-  }
-
-  .section-label{
-    font-size:0.7rem;
-    font-weight:600;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    color:var(--brass-bright);
-    margin-bottom:16px;
-    opacity:0;
-    animation:rise 0.6s ease-out 0.5s forwards;
-  }
-
-  .chips{
+  .directory{
+    width:100%;
     display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+    flex-direction:column;
+    border-top:1px solid rgba(125,90,40,0.25);
   }
 
-  .chip{
-    display:inline-flex;
+  .row{
+    display:flex;
     align-items:center;
-    gap:9px;
-    padding:11px 18px;
-    border:1px solid rgba(181,138,74,0.4);
-    color:var(--parchment);
+    justify-content:center;
+    gap:14px;
+    padding:16px 6px;
     text-decoration:none;
-    font-size:0.95rem;
-    font-weight:500;
-    transition:background 0.25s ease, border-color 0.25s ease;
+    color:var(--ink);
+    border-bottom:1px solid rgba(125,90,40,0.25);
+    position:relative;
+    transition:padding-left 0.25s ease, background 0.25s ease;
     opacity:0;
-    animation:rise 0.55s ease-out forwards;
+    animation:rise 0.6s ease-out forwards;
   }
-  .chip:nth-child(1){ animation-delay:0.56s; }
-  .chip:nth-child(2){ animation-delay:0.61s; }
-  .chip:nth-child(3){ animation-delay:0.66s; }
-  .chip:nth-child(4){ animation-delay:0.71s; }
-  .chip:nth-child(5){ animation-delay:0.76s; }
+  .row:nth-child(1){ animation-delay:0.52s; }
+  .row:nth-child(2){ animation-delay:0.58s; }
+  .row:nth-child(3){ animation-delay:0.64s; }
+  .row:nth-child(4){ animation-delay:0.70s; }
+  .row:nth-child(5){ animation-delay:0.76s; }
 
-  .chip i{
-    color:var(--brass);
-    font-size:0.92rem;
+  .row-icon{
+    flex:0 0 20px;
+    font-size:1.05rem;
+    color:var(--brass-deep);
+    text-align:center;
     transition:color 0.25s ease;
   }
-  .chip:hover, .chip:focus-visible{
-    background:rgba(181,138,74,0.09);
-    border-color:var(--brass-bright);
+  .row-label{
+    flex:0 0 104px;
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:500;
+    font-size:1.12rem;
+    text-align:left;
   }
-  .chip:hover i, .chip:focus-visible i{ color:var(--lagoon); }
-  .chip:focus-visible{ outline:1px solid var(--brass-bright); outline-offset:2px; }
-
-  .rule--thin{
+  .row-handle{
+    flex:0 0 112px;
+    font-size:0.86rem;
+    color:var(--ink-dim);
+    text-align:left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .row-arrow{
+    flex:0 0 16px;
+    font-size:1rem;
+    color:var(--brass-deep);
+    text-align:center;
+    transform:translateX(-4px);
     opacity:0;
-    height:1px;
-    background:linear-gradient(90deg, rgba(181,138,74,0.3), rgba(181,138,74,0.03));
-    margin-bottom:20px;
-    animation:rise 0.6s ease-out 0.82s forwards;
+    transition:transform 0.25s ease, opacity 0.25s ease;
   }
+
+  .row:hover, .row:focus-visible{
+    background:rgba(125,90,40,0.08);
+    padding-left:14px;
+  }
+  .row:hover .row-icon, .row:focus-visible .row-icon{ color:var(--lagoon); }
+  .row:hover .row-arrow, .row:focus-visible .row-arrow{ transform:translateX(0); opacity:1; }
+  .row:focus-visible{ outline:1px solid var(--brass-deep); outline-offset:-1px; }
 
   .footer{
+    margin-top:34px;
     font-size:0.85rem;
-    color:var(--parchment-dim);
+    color:var(--ink-dim);
     letter-spacing:0.3px;
     opacity:0;
-    animation:rise 0.6s ease-out 0.9s forwards;
+    animation:rise 0.6s ease-out 0.85s forwards;
   }
   .footer a{
-    color:var(--brass-bright);
+    color:var(--brass-deep);
     text-decoration:none;
-    border-bottom:1px solid rgba(221,184,125,0.4);
+    border-bottom:1px solid rgba(125,90,40,0.4);
     padding-bottom:1px;
   }
   .footer a:hover, .footer a:focus-visible{ color:var(--lagoon); border-color:var(--lagoon); }
@@ -230,16 +268,22 @@
     to{ opacity:1; transform:translateY(0); }
   }
 
-  @media (max-width:560px){
-    body{ padding:48px 20px; }
-    .header{ flex-direction:column; gap:20px; margin-bottom:26px; }
-    .portrait-frame{ width:104px; height:130px; }
-    h1{ font-size:2.15rem; }
-    .subtitle{ max-width:none; }
+  @media (max-width:480px){
+    body{ padding:40px 18px; }
+    .frame{ inset:8px; }
+    .corner{ width:13px; height:13px; }
+    h1{ font-size:2.35rem; }
+    .seal{ width:132px; height:132px; margin-bottom:26px; }
+    .seal::before{ inset:-9px; }
+    .seal::after{ inset:-15px; }
+    .ornament{ margin:22px 0; }
+    .ornament::before, .ornament::after{ width:40px; margin:0 10px; }
+    .row-handle{ display:none; }
+    .row-label{ flex:1; text-align:center; }
   }
 
   @media (prefers-reduced-motion: reduce){
-    .portrait-frame, h1, .subtitle, .rule, .rule--thin, .section-label, .chip, .footer{
+    .seal, h1, .subtitle, .ornament, .row, .footer{
       animation:none !important;
       opacity:1 !important;
       transform:none !important;
@@ -248,41 +292,55 @@
 </style>
 </head>
 <body>
+  <div class="frame" aria-hidden="true">
+    <span class="corner tl"></span>
+    <span class="corner tr"></span>
+    <span class="corner bl"></span>
+    <span class="corner br"></span>
+  </div>
+
   <main class="page">
-    <div class="header">
-      <div class="portrait-frame">
-        <img src="moosasiraj.jpeg" alt="Portrait of Moosa Siraj" class="portrait">
-      </div>
-      <div class="identity">
-        <h1>Moosa Siraj</h1>
-        <p class="subtitle">Attorney at Law <span class="dot">·</span> Former Member, People&rsquo;s Majlis <span class="dot">·</span> Maldives</p>
-      </div>
+    <div class="seal">
+      <img src="moosasiraj.jpeg" alt="Portrait of Moosa Siraj" class="portrait">
     </div>
 
-    <div class="rule" aria-hidden="true"></div>
+    <h1>Moosa Siraj</h1>
+    <p class="subtitle">Attorney at Law <span class="dot">·</span> Former Member, People&rsquo;s Majlis <span class="dot">·</span> Maldives</p>
 
-    <section class="connect" aria-label="Social links">
-      <p class="section-label">Connect</p>
-      <nav class="chips">
-        <a class="chip" href="https://x.com/MoosesSiraj" target="_blank" rel="noopener">
-          <i class="fa-brands fa-x-twitter"></i> X
-        </a>
-        <a class="chip" href="https://www.facebook.com/MoosesSiraj/" target="_blank" rel="noopener">
-          <i class="fa-brands fa-facebook-f"></i> Facebook
-        </a>
-        <a class="chip" href="https://www.instagram.com/moosasiraj/" target="_blank" rel="noopener">
-          <i class="fa-brands fa-instagram"></i> Instagram
-        </a>
-        <a class="chip" href="https://www.tiktok.com/@moosasiraj" target="_blank" rel="noopener">
-          <i class="fa-brands fa-tiktok"></i> TikTok
-        </a>
-        <a class="chip" href="https://www.linkedin.com/in/moosasiraj/" target="_blank" rel="noopener">
-          <i class="fa-brands fa-linkedin-in"></i> LinkedIn
-        </a>
-      </nav>
-    </section>
+    <div class="ornament" aria-hidden="true">❖</div>
 
-    <div class="rule rule--thin" aria-hidden="true"></div>
+    <nav class="directory" aria-label="Social links">
+      <a class="row" href="https://x.com/MoosesSiraj" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-x-twitter"></i></span>
+        <span class="row-label">X</span>
+        <span class="row-handle">@MoosesSiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+      <a class="row" href="https://www.facebook.com/MoosesSiraj/" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-facebook-f"></i></span>
+        <span class="row-label">Facebook</span>
+        <span class="row-handle">MoosesSiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+      <a class="row" href="https://www.instagram.com/moosasiraj/" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-instagram"></i></span>
+        <span class="row-label">Instagram</span>
+        <span class="row-handle">@moosasiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+      <a class="row" href="https://www.tiktok.com/@moosasiraj" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-tiktok"></i></span>
+        <span class="row-label">TikTok</span>
+        <span class="row-handle">@moosasiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+      <a class="row" href="https://www.linkedin.com/in/moosasiraj/" target="_blank" rel="noopener">
+        <span class="row-icon"><i class="fa-brands fa-linkedin-in"></i></span>
+        <span class="row-label">LinkedIn</span>
+        <span class="row-handle">in/moosasiraj</span>
+        <span class="row-arrow">&#8594;</span>
+      </a>
+    </nav>
 
     <p class="footer">© 2026 Moosa Siraj · <a href="mailto:moosessiraj@gmail.com">Contact</a></p>
   </main>
